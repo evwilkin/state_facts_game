@@ -1,0 +1,23 @@
+.hidden {
+	display: none;
+}
+
+#hero {
+	background-color: blue;
+	border: 1px solid black;
+	height: 5vh;
+	width: 5vw;
+	left: 5%;
+	position: absolute;
+}
+
+div.flex {
+	height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#userName {
+	text-transform: capitalize;
+}
