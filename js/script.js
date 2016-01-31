@@ -14,19 +14,22 @@ $(document).ready(function() {
 		$(document).on("keydown", function(e) {
 			switch(e.which) {
 				case 39:
-					$("#hero").animate({ 
-						left: "+=5%" 
-					}, 250);
 					playerLocation = $("#hero").offset().left;
-					if (playerLocation > $("div.firstScreen div").width()/2) {
-						console.log(playerLocation);
+					if (playerLocation >= $("div.firstScreen div").width()/2) {
+						$(".firstScreen").animate({
+							left: "-=5%"
+						}, 250);
+						$(".backgrounds").animate({
+							left: "-=5%"
+						}, 250);
+					} else {
+						$("#hero").animate({ 
+							left: "+=5%" 
+						}, 250);
 					}
 					break;
 				case 37:
-					$("#hero").animate({ 
-						left: "-=5%" 
-					});
-					console.log(playerLocation);
+					swal("You must go forward in your quest");
 					break;
 				default:
 					return;
