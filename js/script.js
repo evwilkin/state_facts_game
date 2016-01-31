@@ -12,13 +12,15 @@ $(document).ready(function() {
 		}
 		$(".firstScreen").fadeIn(2000);
 		$(document).on("keydown", function(e) {
-			playerLocation = $("#hero").css("left");
 			switch(e.which) {
 				case 39:
 					$("#hero").animate({ 
 						left: "+=5%" 
-					});
-					console.log(playerLocation);
+					}, 250);
+					playerLocation = $("#hero").offset().left;
+					if (playerLocation > $("div.firstScreen div").width()/2) {
+						console.log(playerLocation);
+					}
 					break;
 				case 37:
 					$("#hero").animate({ 
