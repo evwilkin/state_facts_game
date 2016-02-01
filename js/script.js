@@ -3,7 +3,8 @@ var playerLocation;
 $(".firstScreen").hide();
 $(document).ready(function() {
 	//Add event listener to get user's userName
-	$("form").on("submit", function() {
+	$("form").on("submit", function(e) {
+		e.preventDefault();
 		if ($("input").val() != '') {	
 			userName = $("input").val();
 			$("input").val('');
