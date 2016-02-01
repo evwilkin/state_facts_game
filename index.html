@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="stop-scrolling">
-	<nav class="navbar navbar-default" role="navigation">
+	<nav class="navbar navbar-default navbar-inverse" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -16,7 +16,13 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Warrior Race</a>
+			<a class="navbar-brand" href="#">Crazy State Laws</a>
+			<ul class="scores flex">
+				<li><span class="userName"></span></li>
+				<li id="scoreOne"></li>
+				<li><span class="userNameTwo"></span></li>
+				<li id="scoreTwo"></li>
+			</ul>
 		</div>
 	
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,21 +40,38 @@
 	</nav>
 	
 	<!-- Get userName -->
-	<form class="navbar-form navbar-left" role="search">
+	<form class="navbar-form navbar-left firstPlayer" role="search">
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="name" autofocus>
 		</div>
 		<button type="submit" class="btn btn-default">Submit</button>
 	</form>
 
-	<!-- Display intro -->
+	<!-- Display intro and get users -->
 	<div class="firstScreen">
 		<h1>State Facts</h1>
-		<h2 class="text-center">It is time to begin your journey, <span id="userName"></span></h2>
-		<div class="flex">
+		<h2 class="text-center">Let's hit the road, <span class="userName"></span>. Who's coming with us?</h2>
+		<h2 id="welcomeTwo" class="text-center">Welcome along, <span class="userNameTwo"></span>.</h2>
+		<!-- <div class="flex">
 			<div id="hero"></div>
-		</div>
+		</div> -->
+		<form class="navbar-form navbar-left secondPlayer" role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="name" autofocus>
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
 	</div>
+
+	<button class="startGame btn btn-success">Play game!</button>
+
+
+	<!-- Present question and answer options -->
+	<div class="question"></div>
+	<div id="optionOne" class="answer"></div>
+	<div id="optionTwo" class="answer"></div>
+	<div id="optionThree" class="answer"></div>
+	<div id="optionFour" class="answer"></div>
 
 	<!-- Background images -->
 	<div>
@@ -59,7 +82,13 @@
 		<div class="backgrounds" id="backgroundFive"></div>
 	</div>
 	<!-- Latest compiled and minified CSS & JS -->
-	
+	<footer>
+		<ul>
+			<li class="text-center">
+				<a href="http://graduate.olivet.edu/news-events/news/united-states-crazy-laws">Source: Olivet Nazarene University</a>
+			</li>
+		</ul>
+	</footer>
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="sweetAlert/sweetalert.min.js"></script>

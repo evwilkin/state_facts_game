@@ -1,5 +1,5 @@
 body {
-	width: 600vw;
+	width: 100vw;
 }
 
 .hidden {
@@ -31,6 +31,36 @@ div.flex {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+footer {
+	display: block;
+	position: fixed;
+	bottom: 0;
+	background-color: black;
+	color: gray;
+	border-bottom: 0;
+	width: 100vw;
+}
+
+li {
+	list-style-type: none;
+}
+
+ul.scores {
+	display: flex;
+}
+
+ul.scores li {
+	justify-content: space-around;
+}
+
+.startGame {
+	width: 30vw;
+	height: 10vw;
+	position: absolute;
+	top: 45vh;
+	left: 35vw;
 }
 
 #userName {

@@ -1,21 +1,24 @@
 var userName = "";
+var userNameTwo = "";
 var playerLocation;
 var screenOne, screenTwo, screenThree, screenFour;
 $(".firstScreen").hide();
+$("#welcomeTwo").hide();
+$(".startGame").hide();
 $(document).ready(function() {
 	//Add event listener to get user's userName
-	$("form").on("submit", function(e) {
+	$("form.firstPlayer").on("submit", function(e) {
 		e.preventDefault();
 		if ($("input").val() != '') {	
 			userName = $("input").val();
 			$("input").val('');
-			$("form").hide(1000);
-			$("#userName").text(userName + '.');
+			$("form.firstPlayer").hide(1000);
+			$(".userName").text(userName);
 		}
 		$(".firstScreen").fadeIn(2000);
 		
 		//Move through question screens
-		$(document).on("keydown", function(e) {
+		/*$(document).on("keydown", function(e) {
 			switch(e.which) {
 				case 39:
 					playerLocation = $("#hero").offset().left;
@@ -32,17 +35,17 @@ $(document).ready(function() {
 							left: "-=5%"
 						}, 250);
 						//Prompt first question
-						switch(screenOne) {
-							case screenOne <400vw:
+						switch(e) {
+							case screenFour <=0:
 								console.log("done!");
 								break;
-							case screenOne <300vw:
+							case screenThree <=0:
 								console.log("four done!");
 								break;
-							case screenOne <200vw:
+							case screenTwo <=0:
 								console.log("three done!");
 								break;
-							case screenOne <100vw:
+							case screenOne <=0:
 								console.log("two done!");
 								break;
 							default:
@@ -60,8 +63,23 @@ $(document).ready(function() {
 				default:
 					return;
 			}
-		});
+		});*/
 	});
+
+	/*Get player 2 name or proceed to single player*/
+	$("form.secondPlayer").on("submit", function(e) {
+		e.preventDefault();
+		if ($("form.secondPlayer input").val() != '') {	
+			userNameTwo = $("form.secondPlayer input").val();
+			$("form.secondPlayer input").val('');
+			$("form.secondPlayer").hide(1000);
+			$(".userNameTwo").text(userNameTwo);
+		}
+		$("#welcomeTwo").fadeIn(2000);
+		$(".startGame").fadeIn(3000);
+	});
+
+
 });
 
 function State(name, fact) {
@@ -121,3 +139,4 @@ var wisconsin = new State("Wisconsin", "It is illegal to serve butter substitute
 var wyoming = new State("Wyoming", "You may not take a picture of a rabbit from January to April without an official permit.");
 
 var states = [ alabama, alaska, arizona, arkansas, california, colorado, connecticut, delaware, florida, georgia, hawaii, idaho, illinois, indiana, iowa, kansas, kentucky, louisiana, maine, maryland, massachusetts, michigan, minnesota, mississippi, missouri, montana, nevada, nebraska, nj, nh, ny, nm, nc, nd, ohio, oklahoma, oregon, pennsylvania, ri, sc, sd, tennessee, texas, utah, vermont, virginia, washington, wv, wisconsin, wyoming ]
+
