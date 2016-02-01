@@ -1,5 +1,6 @@
 var userName = "";
 var playerLocation;
+var screenOne, screenTwo, screenThree, screenFour;
 $(".firstScreen").hide();
 $(document).ready(function() {
 	//Add event listener to get user's userName
@@ -12,18 +13,41 @@ $(document).ready(function() {
 			$("#userName").text(userName + '.');
 		}
 		$(".firstScreen").fadeIn(2000);
+		
+		//Move through question screens
 		$(document).on("keydown", function(e) {
 			switch(e.which) {
 				case 39:
 					playerLocation = $("#hero").offset().left;
+					screenOne = $("#backgroundOne").offset().left;
+					screenTwo = $("#backgroundTwo").offset().left;
+					screenThree = $("#backgroundThree").offset().left;
+					screenFour = $("#backgroundFour").offset().left;
+					screenFive = $("#backgroundFive").offset().left;
 					if (playerLocation >= $("div.firstScreen div").width()/2) {
-						
 						$(".firstScreen").animate({
 							left: "-=5%"
 						}, 250);
 						$(".backgrounds").animate({
 							left: "-=5%"
 						}, 250);
+						//Prompt first question
+						switch(screenOne) {
+							case screenOne <400vw:
+								console.log("done!");
+								break;
+							case screenOne <300vw:
+								console.log("four done!");
+								break;
+							case screenOne <200vw:
+								console.log("three done!");
+								break;
+							case screenOne <100vw:
+								console.log("two done!");
+								break;
+							default:
+								return;
+						}
 					} else {
 						$("#hero").animate({ 
 							left: "+=5%" 
@@ -31,7 +55,7 @@ $(document).ready(function() {
 					}
 					break;
 				case 37:
-					swal("You must go forward in your quest");
+					swal("You're driving the wrong way!");
 					break;
 				default:
 					return;

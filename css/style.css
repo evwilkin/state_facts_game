@@ -1,9 +1,13 @@
 body {
-	width: 400vw;
+	width: 600vw;
 }
 
 .hidden {
 	display: none;
+}
+
+nav.navbar-default {
+	width:; 100vw;
 }
 
 #hero {
@@ -60,7 +64,7 @@ div.flex {
 	height: 100vh;
 	float: left;
 	margin-top: -20px;
-	z-index: 2;
+	z-index: 3;
 }
 
 #backgroundThree {
@@ -71,5 +75,27 @@ div.flex {
 	height: 100vh;
 	float: left;
 	margin-top: -20px;
-	z-index: 2;
+	z-index: 4;
+}
+
+#backgroundFour {
+	background-color: blue;
+	position: absolute;
+	left: 400%;
+	width: 100vw;
+	height: 100vh;
+	float: left;
+	margin-top: -20px;
+	z-index: 5;
+}
+
+#backgroundFive {
+	background-color: salmon;
+	position: absolute;
+	left: 500%;
+	width: 100vw;
+	height: 100vh;
+	float: left;
+	margin-top: -20px;
+	z-index: 6;
 }
