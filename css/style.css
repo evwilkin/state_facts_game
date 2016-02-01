@@ -63,6 +63,10 @@ ul.scores li {
 	left: 35vw;
 }
 
+button.startGame {
+	font-size: 1.5em;
+}
+
 #userName {
 	text-transform: capitalize;
 }

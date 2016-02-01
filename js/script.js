@@ -79,7 +79,19 @@ $(document).ready(function() {
 		$(".startGame").fadeIn(3000);
 	});
 
-
+	//Start Game
+	$("button.startGame").on("click", function() {
+		var questionNumber = Math.floor(Math.random() * states.length);
+		var thisStateName = states[questionNumber].name;
+		var thisStateFact = states[questionNumber].fact;
+		console.log(questionNumber);
+		console.log(states[questionNumber]);
+		console.log(thisStateName);
+		console.log(thisStateFact);
+		//Remove this state from the array so question isn't duplicated later in game
+		states.splice(questionNumber, 1);
+		console.log(states.length);
+	});
 });
 
 function State(name, fact) {
