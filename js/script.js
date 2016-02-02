@@ -8,10 +8,19 @@ var userScoreOne = 0;
 var userScoreTwo = 0;
 
 //hide screens at start
-$(".firstScreen").hide();
-$("#welcomeTwo").hide();
-$(".startGame").hide();
-$("div.gameBoard").hide();
+var startScreen = function() {
+	$(".firstScreen").hide();
+	$("#welcomeTwo").hide();
+	$(".startGame").hide();
+	$("div.gameBoard").hide();
+	$("form.firstPlayer").show();
+	userScoreOne = 0;
+	userScoreTwo = 0;
+	counter = 0;
+	userName = '';
+	userNameTwo = '';
+}
+startScreen();
 
 //load first screen
 $(document).ready(function() {
@@ -24,6 +33,9 @@ $(document).ready(function() {
 			$("form.firstPlayer").hide(1000);
 			$(".userName").text(userName);
 			$(".firstScreen").fadeIn(2000);
+			//adding below line as form isn't loading after first game finished
+			$("form.secondPlayer").fadeIn(2000);
+			//
 		} else {
 			swal({
 				title: "Name needed!",
@@ -93,7 +105,7 @@ $(document).ready(function() {
 			$(".userNameTwo").text(userNameTwo);
 		}
 		$("#welcomeTwo").fadeIn(2000);
-		$(".startGame").fadeIn(3000);
+		$(".startGame").fadeIn(2000);
 	});
 
 	//function to set up gameBoard for next round
@@ -133,6 +145,8 @@ $(document).ready(function() {
 		$(".firstScreen").hide();
 		nextRound();
 		$("div.gameBoard").show();
+		$("#userOneScore").text(userScoreOne);
+		$("#userTwoScore").text(userScoreTwo);
 	});
 	
 
@@ -142,23 +156,25 @@ $(document).ready(function() {
 				swal("Correct!", "Point for " + userName, "success");
 				userScoreOne+=1;
 				console.log(userScoreOne)
-				$("#userScoreOne").text(userScoreOne);
+				$("#userOneScore").text(userScoreOne);
 			} else {
 				swal("Correct!", "Point for " + userNameTwo, "success");
 				userScoreTwo+=1;
 				console.log(userScoreTwo)
-				$("#userScoreTwo").text(userScoreTwo);
+				$("#userTwoScore").text(userScoreTwo);
 			}
 		} else {
-			swal("Sorry, that's not right.", "Better luck next time", "error");
+			swal("Sorry, that's not right.", "The correct answer is: " + thisStateFact, "error");
 		}
 		counter+=1;
 		if (userScoreOne === 5) {
 			swal(userName + " wins!");
+			$("button.confirm").click(startScreen);
 		} else if (userScoreTwo === 5) {
 			swal(userNameTwo + " wins!");
+			$("button.confirm").click(startScreen);
 		} else {
-			nextRound();
+			$("button.confirm").click(nextRound);
 		}
 	});
 	
