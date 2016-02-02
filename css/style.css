@@ -45,7 +45,7 @@ div.gameBoard {
 	color: white;
 	width: 100vw;
 	height: 100vh;
-	float: left;
+	font-size: 2em;
 }
 
 footer {

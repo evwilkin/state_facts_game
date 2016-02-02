@@ -4,6 +4,8 @@ var userNameTwo = "";
 var playerLocation;
 var screenOne, screenTwo, screenThree, screenFour;
 var counter = 0;
+var userScoreOne = 0;
+var userScoreTwo = 0;
 
 $(".firstScreen").hide();
 $("#welcomeTwo").hide();
@@ -120,6 +122,22 @@ $(document).ready(function() {
 		$("#optionTwo").text(randomAnswers[1]);
 		$("#optionThree").text(randomAnswers[2]);
 		$("#optionFour").text(randomAnswers[3]);
+		$("div.answer").on("click", function() {
+			if ($(this).context.innerHTML == thisStateFact) {
+				if (counter % 2 === 0) {
+					swal("Correct!", "Point for " + userName, "success");
+					userScoreOne+=1;
+					$("#userScoreOne").text(userScoreOne);
+				} else {
+					swal("Correct!", "Point for " + userNameTwo);
+					userScoreTwo+=1;
+					$("#userScoreTwo").text(userScoreTwo);
+				}
+			} else {
+				swal("Sorry, that's not right.", "Better luck next time", "error");
+			}
+			counter+=1;
+		});
 	}
 		
 
@@ -149,7 +167,7 @@ var illinois = new State("Illinois", "It is legal for a minor to drink as long a
 var indiana = new State("Indiana", "Mustaches are illegal if the bearer has a tendency to habitually kiss other humans.");
 var iowa = new State("Iowa", "One armed piano players must, by law, perform for free.");
 var kansas = new State("Kansas", "A poorly worded law states that if two trains meet on the same track, neither shall proceed until the other has passed.");
-var kentucky = new State("Kentucky", "One may not dye a ducling blue and offer it for sale unless more than six are for sale at once.");
+var kentucky = new State("Kentucky", "One may not dye a duckling blue and offer it for sale unless more than six are for sale at once.");
 var louisiana = new State("Louisiana", "You can be fined $500 for sending a pizza order to someone's house without his or her knowledge.");
 var maine = new State("Maine", "It is illegal to keep Christmas decorations up after January 14.");
 var maryland = new State("Maryland", "It is a violation to be in a public park with a sleeveless shirt. $10 fine.");
