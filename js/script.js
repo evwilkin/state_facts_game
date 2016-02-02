@@ -2,15 +2,18 @@
 var userName = "";
 var userNameTwo = "";
 var playerLocation;
-var screenOne, screenTwo, screenThree, screenFour;
+var screenOne, screenTwo, screenThree, screenFour, correctAnswer, thisStateFact, thisStateName, wrongAnswers;
 var counter = 0;
 var userScoreOne = 0;
 var userScoreTwo = 0;
 
+//hide screens at start
 $(".firstScreen").hide();
 $("#welcomeTwo").hide();
 $(".startGame").hide();
 $("div.gameBoard").hide();
+
+//load first screen
 $(document).ready(function() {
 	//Add event listener to get user's userName
 	$("form.firstPlayer").on("submit", function(e) {
@@ -20,8 +23,15 @@ $(document).ready(function() {
 			$("input").val('');
 			$("form.firstPlayer").hide(1000);
 			$(".userName").text(userName);
+			$(".firstScreen").fadeIn(2000);
+		} else {
+			swal({
+				title: "Name needed!",
+				text: "Please enter a name for Player 1.",
+				timer: 1000,
+				showConfirmButton: false });
 		}
-		$(".firstScreen").fadeIn(2000);
+		
 
 		
 		//Move through question screens
@@ -86,21 +96,15 @@ $(document).ready(function() {
 		$(".startGame").fadeIn(3000);
 	});
 
-	//Start Game
-	$("button.startGame").on("click", function() {
-		$(".firstScreen").hide();
-		$("div.gameBoard").show();
-	});
-
-	//Play game 10 times - 5 each per player
-	for (var i = 1; i <=10; i++) {
-		var correctAnswer = Math.floor(Math.random() * states.length);
-		var thisStateName = states[correctAnswer].name;
-		var thisStateFact = states[correctAnswer].fact;
+	//function to set up gameBoard for next round
+	var nextRound = function() {
+		correctAnswer = Math.floor(Math.random() * states.length);
+		thisStateName = states[correctAnswer].name;
+		thisStateFact = states[correctAnswer].fact;
 		//Remove this state from the array so question isn't duplicated later in game
 		states.splice(correctAnswer, 1);
 		//Reset wrong answers, pull 3 random wrong answers from remaining states array
-		var wrongAnswers = [];
+		wrongAnswers = [];
 		var getWrongAnswers = function() {
 			for (var x = 0; x < 3; x++) {
 				var wrongFact = Math.floor(Math.random() * states.length);
@@ -122,23 +126,42 @@ $(document).ready(function() {
 		$("#optionTwo").text(randomAnswers[1]);
 		$("#optionThree").text(randomAnswers[2]);
 		$("#optionFour").text(randomAnswers[3]);
-		$("div.answer").on("click", function() {
-			if ($(this).context.innerHTML == thisStateFact) {
-				if (counter % 2 === 0) {
-					swal("Correct!", "Point for " + userName, "success");
-					userScoreOne+=1;
-					$("#userScoreOne").text(userScoreOne);
-				} else {
-					swal("Correct!", "Point for " + userNameTwo);
-					userScoreTwo+=1;
-					$("#userScoreTwo").text(userScoreTwo);
-				}
-			} else {
-				swal("Sorry, that's not right.", "Better luck next time", "error");
-			}
-			counter+=1;
-		});
 	}
+
+	//Start Game
+	$("button.startGame").on("click", function() {
+		$(".firstScreen").hide();
+		nextRound();
+		$("div.gameBoard").show();
+	});
+	
+
+	$("div.answer").on("click", function() {
+		if ($(this).context.innerHTML == thisStateFact) {
+			if (counter % 2 === 0) {
+				swal("Correct!", "Point for " + userName, "success");
+				userScoreOne+=1;
+				console.log(userScoreOne)
+				$("#userScoreOne").text(userScoreOne);
+			} else {
+				swal("Correct!", "Point for " + userNameTwo, "success");
+				userScoreTwo+=1;
+				console.log(userScoreTwo)
+				$("#userScoreTwo").text(userScoreTwo);
+			}
+		} else {
+			swal("Sorry, that's not right.", "Better luck next time", "error");
+		}
+		counter+=1;
+		if (userScoreOne === 5) {
+			swal(userName + " wins!");
+		} else if (userScoreTwo === 5) {
+			swal(userNameTwo + " wins!");
+		} else {
+			nextRound();
+		}
+	});
+	
 		
 
 
