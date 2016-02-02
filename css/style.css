@@ -8,6 +8,7 @@ body {
 
 nav.navbar-default {
 	width:; 100vw;
+	border-radius: 0;
 }
 
 #hero {
@@ -22,8 +23,12 @@ nav.navbar-default {
 
 div.firstScreen {
 	margin-top: -20px;
-	height: 100vh;
 	z-index: 1;
+	background-color: black;
+	color: white;
+	width: 100vw;
+	height: 100vh;
+	float: left;
 }
 
 div.flex {
@@ -31,6 +36,16 @@ div.flex {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+div.gameBoard {
+	margin-top: -20px;
+	z-index: 1;
+	background-color: black;
+	color: white;
+	width: 100vw;
+	height: 100vh;
+	float: left;
 }
 
 footer {
@@ -46,15 +61,6 @@ footer {
 li {
 	list-style-type: none;
 }
-
-ul.scores {
-	display: flex;
-}
-
-ul.scores li {
-	justify-content: space-around;
-}
-
 .startGame {
 	width: 30vw;
 	height: 10vw;
@@ -63,20 +69,16 @@ ul.scores li {
 	left: 35vw;
 }
 
+.scoreCard {
+	font-size: 2em;
+}
+
 button.startGame {
 	font-size: 1.5em;
 }
 
 #userName {
 	text-transform: capitalize;
-}
-
-.firstScreen {
-	background-color: black;
-	color: white;
-	width: 100vw;
-	height: 100vh;
-	float: left;
 }
 
 #backgroundOne {

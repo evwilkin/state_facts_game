@@ -55,19 +55,35 @@
 			</div>
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
+		<button class="startGame btn btn-success">Play game!</button>
 	</div>
 
 	<!-- Start Game -->
-	<button class="startGame btn btn-success">Play game!</button>
+	
 
 
 	<!-- Present question and answer options -->
 	<div class="gameBoard">
-		<div class="question"></div>
-		<div id="optionOne" class="answer"></div>
-		<div id="optionTwo" class="answer"></div>
-		<div id="optionThree" class="answer"></div>
-		<div id="optionFour" class="answer"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-lg-offset-2 scoreCard"><span class="userName"></span>:</div>
+				<div class="col-lg-1 scoreCard"><span class="userOneScore"></span></div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2 scoreCard"><span class="userNameTwo"></span>:</div>
+				<div class="col-lg-1 scoreCard"><span class="userTwoScore"></span></div>
+			</div>
+			<div class="row">
+				<div class="question dcol-lg-12"></div>
+			</div>
+			<div class="row">
+				<div id="optionOne" class="answer"></div>
+				<div id="optionTwo" class="answer"></div>
+			</div>
+			<div class="row">
+				<div id="optionThree" class="answer"></div>
+				<div id="optionFour" class="answer"></div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Background images -->

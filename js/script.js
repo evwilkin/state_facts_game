@@ -1,10 +1,14 @@
+//Declare variables
 var userName = "";
 var userNameTwo = "";
 var playerLocation;
 var screenOne, screenTwo, screenThree, screenFour;
+var counter = 0;
+
 $(".firstScreen").hide();
 $("#welcomeTwo").hide();
 $(".startGame").hide();
+$("div.gameBoard").hide();
 $(document).ready(function() {
 	//Add event listener to get user's userName
 	$("form.firstPlayer").on("submit", function(e) {
@@ -16,6 +20,7 @@ $(document).ready(function() {
 			$(".userName").text(userName);
 		}
 		$(".firstScreen").fadeIn(2000);
+
 		
 		//Move through question screens
 		/*$(document).on("keydown", function(e) {
@@ -81,17 +86,46 @@ $(document).ready(function() {
 
 	//Start Game
 	$("button.startGame").on("click", function() {
-		var questionNumber = Math.floor(Math.random() * states.length);
-		var thisStateName = states[questionNumber].name;
-		var thisStateFact = states[questionNumber].fact;
-		console.log(questionNumber);
-		console.log(states[questionNumber]);
-		console.log(thisStateName);
-		console.log(thisStateFact);
-		//Remove this state from the array so question isn't duplicated later in game
-		states.splice(questionNumber, 1);
-		console.log(states.length);
+		$(".firstScreen").hide();
+		$("div.gameBoard").show();
 	});
+
+	//Play game 10 times - 5 each per player
+	for (var i = 1; i <=10; i++) {
+		var correctAnswer = Math.floor(Math.random() * states.length);
+		var thisStateName = states[correctAnswer].name;
+		var thisStateFact = states[correctAnswer].fact;
+		//Remove this state from the array so question isn't duplicated later in game
+		states.splice(correctAnswer, 1);
+		//Reset wrong answers, pull 3 random wrong answers from remaining states array
+		var wrongAnswers = [];
+		var getWrongAnswers = function() {
+			for (var x = 0; x < 3; x++) {
+				var wrongFact = Math.floor(Math.random() * states.length);
+				wrongAnswers.push(states[wrongFact].fact);
+			}
+		}
+		getWrongAnswers();
+		console.log(wrongAnswers);
+		var allAnswers = wrongAnswers.concat(thisStateFact);
+		//Randomly assign order of answers
+		var randomAnswers = [];
+		for (var n = 0; n < 4; n++) {
+			var randomOrder = Math.floor(Math.random() * allAnswers.length);
+			randomAnswers.push(allAnswers[randomOrder]);
+			allAnswers.splice(randomOrder, 1);
+		}
+		$("div.question").text(thisStateName);
+		$("#optionOne").text(randomAnswers[0]);
+		$("#optionTwo").text(randomAnswers[1]);
+		$("#optionThree").text(randomAnswers[2]);
+		$("#optionFour").text(randomAnswers[3]);
+	}
+		
+
+
+
+
 });
 
 function State(name, fact) {
@@ -143,7 +177,7 @@ var sd = new State("South Dakota", "It is illegal to sleep in a cheese factory."
 var tennessee = new State("Tennessee", "It is illegal to share your Netflix password.");
 var texas = new State("Texas", "It is illegal to sell one's eye.");
 var utah = new State("Utah", "It is illegal NOT to drink milk.");
-var vermont = new State("Women must obtain written permission from their husbands to wear false teeth.");
+var vermont = new State("Vermont", "Women must obtain written permission from their husbands to wear false teeth.");
 var virginia = new State("Virginia", "Children are not to go trick-or-treating on Halloween.");
 var washington = new State("Washington", "The harassing of Bigfoot, Sasquatch or other undiscovered subspecies is a felony punishable by a fine and/or imprisonment.");
 var wv = new State("West Virginia", "Whistling underwater is prohibited.");
