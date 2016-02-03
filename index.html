@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="sweetAlert/sweetalert.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body class="stop-scrolling">
+<body>
 	<nav class="navbar navbar-default navbar-inverse" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -46,9 +46,6 @@
 		<h1>State Facts</h1>
 		<h2 class="text-center">Let's hit the road, <span class="userName"></span>. Who's coming with us?</h2>
 		<h2 id="welcomeTwo" class="text-center">Welcome along, <span class="userNameTwo"></span>.</h2>
-		<!-- <div class="flex">
-			<div id="hero"></div>
-		</div> -->
 		<form class="navbar-form navbar-left secondPlayer" role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="name" autofocus>
@@ -65,34 +62,49 @@
 	<!-- Present question and answer options -->
 	<div class="gameBoard">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-2 col-lg-offset-2 scoreCard"><span class="userName"></span>:</div>
+			<div class="row scoreKeeper">
+				<div class="col-lg-1"></div>
+				<div id="playerOneTurn" class="col-lg-1"></div>
+				<div class="col-lg-2 scoreCard"><span class="userName"></span>:</div>
 				<div class="col-lg-1 scoreCard"><span id="userOneScore"></span></div>
-				<div class="col-lg-2"></div>
+				<div class="col-lg-1"></div>
+				<div id-"playerTwoTurn" class="col-lg-1"></div>
 				<div class="col-lg-2 scoreCard"><span class="userNameTwo"></span>:</div>
 				<div class="col-lg-1 scoreCard"><span id="userTwoScore"></span></div>
 			</div>
 			<div class="row">
-				<div class="question dcol-lg-12"></div>
+				<div class="question col-lg-12"></div>
 			</div>
 			<div class="row">
-				<div id="optionOne" class="answer"></div>
-				<div id="optionTwo" class="answer"></div>
-			</div>
-			<div class="row">
-				<div id="optionThree" class="answer"></div>
-				<div id="optionFour" class="answer"></div>
+				<div id="optionOne" class="answer col-lg-3"></div>
+				<div id="optionTwo" class="answer col-lg-3"></div>
+				<div id="optionThree" class="answer col-lg-3"></div>
+				<div id="optionFour" class="answer col-lg-3"></div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Background images -->
-	<div>
-		<div class="backgrounds" id="backgroundOne"></div>
-		<div class="backgrounds" id="backgroundTwo"></div>
-		<div class="backgrounds" id="backgroundThree"></div>
-		<div class="backgrounds" id="backgroundFour"></div>
-		<div class="backgrounds" id="backgroundFive"></div>
+	<!-- cars -->
+	<div class="race">
+		<div id="car1" class="cars">		
+		</div>
+		<div class="road">
+			<div class="yellow-line top">	
+			</div>
+			<div class="yellow-line bottom"></div>
+		</div>
+		<div id="car2" class="cars">
+		</div>
+		<div id="finishLine">
+			<div class="white"></div>
+			<div class="black"></div>
+			<div class="black"></div>
+			<div class="white"></div>
+			<div class="white"></div>
+			<div class="black"></div>
+			<div class="black"></div>
+			<div class="white"></div>
+		</div>
 	</div>
 	<!-- Latest compiled and minified CSS & JS -->
 	<footer>

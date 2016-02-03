@@ -6,6 +6,10 @@ var screenOne, screenTwo, screenThree, screenFour, correctAnswer, thisStateFact,
 var counter = 0;
 var userScoreOne = 0;
 var userScoreTwo = 0;
+var tenPercent = $("div.race").width()/10;
+var moveCar = function(element) {
+	element.css("left", "+=tenPercent");
+}
 
 //hide screens at start
 var startScreen = function() {
@@ -14,16 +18,19 @@ var startScreen = function() {
 	$(".startGame").hide();
 	$("div.gameBoard").hide();
 	$("form.firstPlayer").show();
+	$("div.race").hide();
 	userScoreOne = 0;
 	userScoreTwo = 0;
 	counter = 0;
 	userName = '';
 	userNameTwo = '';
+	states = [ alabama, alaska, arizona, arkansas, california, colorado, connecticut, delaware, florida, georgia, hawaii, idaho, illinois, indiana, iowa, kansas, kentucky, louisiana, maine, maryland, massachusetts, michigan, minnesota, mississippi, missouri, montana, nevada, nebraska, nj, nh, ny, nm, nc, nd, ohio, oklahoma, oregon, pennsylvania, ri, sc, sd, tennessee, texas, utah, vermont, virginia, washington, wv, wisconsin, wyoming ]
 }
-startScreen();
 
 //load first screen
 $(document).ready(function() {
+	startScreen();
+	
 	//Add event listener to get user's userName
 	$("form.firstPlayer").on("submit", function(e) {
 		e.preventDefault();
@@ -43,56 +50,6 @@ $(document).ready(function() {
 				timer: 1000,
 				showConfirmButton: false });
 		}
-		
-
-		
-		//Move through question screens
-		/*$(document).on("keydown", function(e) {
-			switch(e.which) {
-				case 39:
-					playerLocation = $("#hero").offset().left;
-					screenOne = $("#backgroundOne").offset().left;
-					screenTwo = $("#backgroundTwo").offset().left;
-					screenThree = $("#backgroundThree").offset().left;
-					screenFour = $("#backgroundFour").offset().left;
-					screenFive = $("#backgroundFive").offset().left;
-					if (playerLocation >= $("div.firstScreen div").width()/2) {
-						$(".firstScreen").animate({
-							left: "-=5%"
-						}, 250);
-						$(".backgrounds").animate({
-							left: "-=5%"
-						}, 250);
-						//Prompt first question
-						switch(e) {
-							case screenFour <=0:
-								console.log("done!");
-								break;
-							case screenThree <=0:
-								console.log("four done!");
-								break;
-							case screenTwo <=0:
-								console.log("three done!");
-								break;
-							case screenOne <=0:
-								console.log("two done!");
-								break;
-							default:
-								return;
-						}
-					} else {
-						$("#hero").animate({ 
-							left: "+=5%" 
-						}, 250);
-					}
-					break;
-				case 37:
-					swal("You're driving the wrong way!");
-					break;
-				default:
-					return;
-			}
-		});*/
 	});
 
 	/*Get player 2 name or proceed to single player*/
@@ -106,26 +63,33 @@ $(document).ready(function() {
 		}
 		$("#welcomeTwo").fadeIn(2000);
 		$(".startGame").fadeIn(2000);
+		$("div.race").show();
 	});
-
+	//making changes
 	//function to set up gameBoard for next round
 	var nextRound = function() {
+		console.log("asdf");
 		correctAnswer = Math.floor(Math.random() * states.length);
 		thisStateName = states[correctAnswer].name;
 		thisStateFact = states[correctAnswer].fact;
+		console.log(correctAnswer + " " + thisStateName + " " + thisStateFact);
 		//Remove this state from the array so question isn't duplicated later in game
 		states.splice(correctAnswer, 1);
+		console.log('states', states.length);
 		//Reset wrong answers, pull 3 random wrong answers from remaining states array
-		wrongAnswers = [];
+		var statesCopy = states.slice(0);
+		allAnswers = [thisStateFact];
 		var getWrongAnswers = function() {
 			for (var x = 0; x < 3; x++) {
-				var wrongFact = Math.floor(Math.random() * states.length);
-				wrongAnswers.push(states[wrongFact].fact);
+				var wrongFact = Math.floor(Math.random() * statesCopy.length);
+				allAnswers.push(statesCopy[wrongFact].fact);
+				console.log("allAnswers "+ allAnswers);
+				console.log("States copy length: " + statesCopy.length);
+				statesCopy.splice(wrongFact, 1);
+				console.log("statesCopy length after splice: " + statesCopy.length);
 			}
 		}
 		getWrongAnswers();
-		console.log(wrongAnswers);
-		var allAnswers = wrongAnswers.concat(thisStateFact);
 		//Randomly assign order of answers
 		var randomAnswers = [];
 		for (var n = 0; n < 4; n++) {
@@ -155,34 +119,30 @@ $(document).ready(function() {
 			if (counter % 2 === 0) {
 				swal("Correct!", "Point for " + userName, "success");
 				userScoreOne+=1;
-				console.log(userScoreOne)
 				$("#userOneScore").text(userScoreOne);
 			} else {
 				swal("Correct!", "Point for " + userNameTwo, "success");
 				userScoreTwo+=1;
-				console.log(userScoreTwo)
 				$("#userTwoScore").text(userScoreTwo);
 			}
 		} else {
 			swal("Sorry, that's not right.", "The correct answer is: " + thisStateFact, "error");
 		}
+		// console.log(states.length);
 		counter+=1;
 		if (userScoreOne === 5) {
 			swal(userName + " wins!");
-			$("button.confirm").click(startScreen);
+			startScreen();
 		} else if (userScoreTwo === 5) {
 			swal(userNameTwo + " wins!");
-			$("button.confirm").click(startScreen);
+			startScreen();
+		} else if (states.length === 0) {
+			swal("Game over", "Out of states!");
+			startScreen();
 		} else {
-			$("button.confirm").click(nextRound);
+			nextRound();
 		}
 	});
-	
-		
-
-
-
-
 });
 
 function State(name, fact) {
@@ -243,3 +203,8 @@ var wyoming = new State("Wyoming", "You may not take a picture of a rabbit from 
 
 var states = [ alabama, alaska, arizona, arkansas, california, colorado, connecticut, delaware, florida, georgia, hawaii, idaho, illinois, indiana, iowa, kansas, kentucky, louisiana, maine, maryland, massachusetts, michigan, minnesota, mississippi, missouri, montana, nevada, nebraska, nj, nh, ny, nm, nc, nd, ohio, oklahoma, oregon, pennsylvania, ri, sc, sd, tennessee, texas, utah, vermont, virginia, washington, wv, wisconsin, wyoming ]
 
+
+//insert to stop duplicate event listeners
+//	$("button.confirm").off('click');
+
+//Problem was assigning array to new variable simply pointed to that existing array, needed to use .slice(0) to actually create a copy
