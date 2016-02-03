@@ -3,20 +3,19 @@ body {
 	overflow: hidden;
 }
 
-.hidden {
-	display: none;
-}
-
-nav.navbar-default {
-	width:; 100vw;
-	border-radius: 0;
+h1 {
+	text-align: center;
+	margin: 0 auto;
+	font-family: 'Slackey', cursive;
 }
 
 div.firstScreen {
-	margin-top: -20px;
 	z-index: 1;
-	background-color: black;
-	color: white;
+	background-image: url("../images/map.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top center;
+	color: black;
 	width: 100vw;
 	height: 100vh;
 	float: left;
@@ -30,9 +29,11 @@ div.flex {
 }
 
 div.gameBoard {
-	margin-top: -20px;
 	z-index: 2;
-	background-color: #3D474A;
+	background-image: url("../images/sunset.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
 	color: white;
 	width: 100vw;
 	height: 100vh;
@@ -95,30 +96,40 @@ button.startGame {
 
 div.race {
 	position: absolute;
-	bottom: 10%;
-	height: 20%;
+	bottom: 3%;
+	height: 28%;
 	width: 100%;
 }
 
 .cars {
-	height: 35%;
-	width: 4vw;
-	left: 5%;
-	position: absolute;
+	display: inline-block;
+	height: 100%;
+	position: relative;
 	z-index: 100;
 	background-repeat: no-repeat;
+	bottom: 0;
+	background-position: center bottom;
+	width: 25%;
 }
 
 #car1 {
-	top: 0;
-	background-image: url("../images/man.svg");
-	background-position: center top;
+	background-image: url("../images/woman.svg");
+	float: left;
+	left: 5%;
 }
 
 #car2 {
-	bottom: 0;
-	background-image: url("../images/woman.svg");
-	background-position: center bottom;
+	float: right;
+	right: 5%;
+	background-image: url("../images/man.svg");
+	-moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
 }
 div.yellow-line {
 	background-color: gold;
@@ -136,6 +147,10 @@ div.yellow-line.bottom {
 }
 
 #userName {
+	text-transform: capitalize;
+}
+
+#userNameTwo {
 	text-transform: capitalize;
 }
 
@@ -158,4 +173,14 @@ div.yellow-line.bottom {
 	height: 100%;
 	position: absolute;
 	right: 15%;
+}
+
+ul {
+	margin: 0 auto;
+	text-align: center;
+}
+
+li.sources {
+	display: inline;
+	margin: 0 10px;
 }

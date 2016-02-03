@@ -7,13 +7,26 @@ var counter = 0;
 var userScoreOne = 0;
 var userScoreTwo = 0;
 var tenPercent = $("div.race").width()/10;
-var moveCar = function(element) {
-	element.css("left", "+=tenPercent");
+var resetCars = function() {
+	$("#car1").css({
+		"left": "0",
+		"bottom": "0",
+		"width": "25%",
+		"height": "100%"
+	});
+	$("#car2").css({
+		"right": "0",
+		"bottom": "0",
+		"width": "25%",
+		"height": "100%"
+	});
 }
+
 
 //hide screens at start
 var startScreen = function() {
 	$(".firstScreen").hide();
+	$(".firstScreen").fadeIn(1500);
 	$("#welcomeTwo").hide();
 	$(".startGame").hide();
 	$("div.gameBoard").hide();
@@ -63,7 +76,6 @@ $(document).ready(function() {
 		}
 		$("#welcomeTwo").fadeIn(2000);
 		$(".startGame").fadeIn(2000);
-		$("div.race").show();
 	});
 	//making changes
 	//function to set up gameBoard for next round
@@ -109,6 +121,7 @@ $(document).ready(function() {
 		$(".firstScreen").hide();
 		nextRound();
 		$("div.gameBoard").show();
+		$("div.race").show();
 		$("#userOneScore").text(userScoreOne);
 		$("#userTwoScore").text(userScoreTwo);
 	});
@@ -120,12 +133,22 @@ $(document).ready(function() {
 				swal("Correct!", "Point for " + userName, "success");
 				userScoreOne+=1;
 				$("#userOneScore").text(userScoreOne);
-				$("#car1").animate({left: "+=15%"});
+				$("#car1").animate({
+					left: "+=9%",
+					bottom: "+=14%",
+					width: "-=5%",
+					height: "-=10%"
+				});
 			} else {
 				swal("Correct!", "Point for " + userNameTwo, "success");
 				userScoreTwo+=1;
 				$("#userTwoScore").text(userScoreTwo);
-				$("#car2").animate({left: "+=15%"});
+				$("#car2").animate({
+					right: "+=9%",
+					bottom: "+=14%",
+					width: "-=5%",
+					height: "-=10%"
+				});
 			}
 		} else {
 			swal("Sorry, that's not right.", "The correct answer is: " + thisStateFact, "error");
@@ -135,12 +158,15 @@ $(document).ready(function() {
 		if (userScoreOne === 5) {
 			swal(userName + " wins!");
 			startScreen();
+			resetCars();
 		} else if (userScoreTwo === 5) {
 			swal(userNameTwo + " wins!");
 			startScreen();
+			resetCars();
 		} else if (states.length === 0) {
 			swal("Game over", "Out of states!");
 			startScreen();
+			resetCars();
 		} else {
 			nextRound();
 		}
@@ -205,8 +231,3 @@ var wyoming = new State("Wyoming", "You may not take a picture of a rabbit from 
 
 var states = [ alabama, alaska, arizona, arkansas, california, colorado, connecticut, delaware, florida, georgia, hawaii, idaho, illinois, indiana, iowa, kansas, kentucky, louisiana, maine, maryland, massachusetts, michigan, minnesota, mississippi, missouri, montana, nevada, nebraska, nj, nh, ny, nm, nc, nd, ohio, oklahoma, oregon, pennsylvania, ri, sc, sd, tennessee, texas, utah, vermont, virginia, washington, wv, wisconsin, wyoming ]
 
-
-//insert to stop duplicate event listeners
-//	$("button.confirm").off('click');
-
-//Problem was assigning array to new variable simply pointed to that existing array, needed to use .slice(0) to actually create a copy
