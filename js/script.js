@@ -120,10 +120,12 @@ $(document).ready(function() {
 				swal("Correct!", "Point for " + userName, "success");
 				userScoreOne+=1;
 				$("#userOneScore").text(userScoreOne);
+				$("#car1").animate({left: "+=15%"});
 			} else {
 				swal("Correct!", "Point for " + userNameTwo, "success");
 				userScoreTwo+=1;
 				$("#userTwoScore").text(userScoreTwo);
+				$("#car2").animate({left: "+=15%"});
 			}
 		} else {
 			swal("Sorry, that's not right.", "The correct answer is: " + thisStateFact, "error");
