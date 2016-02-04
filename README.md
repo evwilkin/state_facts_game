@@ -1,11 +1,11 @@
 #A Tour of America's Ludicrous Laws
-This game was inspired by a story that a friend recently sent around highlighting some of the crazy laws in the country that you'd never believe were real.
+This game was inspired by an article that a friend recently sent around highlighting some of the crazy laws in the country that you'd never believe were real.  We all had a fun time going through them, picking out our favorites and learning a little weird trivia about our home states as well.
 
-I wanted to take this content but turn it into an interactive adventure, and hence this game was born.
+I wanted to take this fun content and turn it into an interactive learning adventure, and hence this game was born.
 
 ##The Build
 
-This game was built from the group up using the following tools:
+This game was built from the ground up using the following tools:
 - HTML
 - CSS
 - Javascript
