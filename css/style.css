@@ -79,6 +79,7 @@ span.large {
 
 div.firstScreen {
 	z-index: 1;
+	padding-top: 30px;
 	background-image: url("../images/map.png");
 	background-repeat: no-repeat;
 	background-size: cover;
