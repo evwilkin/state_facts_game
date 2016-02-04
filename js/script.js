@@ -8,20 +8,10 @@ var userScoreOne = 0;
 var userScoreTwo = 0;
 var tenPercent = $("div.race").width()/10;
 var resetCars = function() {
-	$("#car1").css({
-		"left": "0",
-		"bottom": "0",
-		"width": "25%",
-		"height": "100%"
-	});
-	$("#car2").css({
-		"right": "0",
-		"bottom": "0",
-		"width": "25%",
-		"height": "100%"
-	});
+	$("#car1").removeAttr("style");
+	$("#car2").removeAttr("style");
 }
-
+//additional states variables & objects at bottom of file
 
 //hide screens at start
 var startScreen = function() {
@@ -65,7 +55,7 @@ $(document).ready(function() {
 		}
 	});
 
-	/*Get player 2 name or proceed to single player*/
+	//Get player 2 name
 	$("form.secondPlayer").on("submit", function(e) {
 		e.preventDefault();
 		if ($("form.secondPlayer input").val() != '') {	
@@ -77,17 +67,17 @@ $(document).ready(function() {
 		$("#welcomeTwo").fadeIn(2000);
 		$(".startGame").fadeIn(2000);
 	});
-	//making changes
-	//function to set up gameBoard for next round
+
+	//function to set up gameBoard for next question round
 	var nextRound = function() {
-		console.log("asdf");
 		correctAnswer = Math.floor(Math.random() * states.length);
 		thisStateName = states[correctAnswer].name;
 		thisStateFact = states[correctAnswer].fact;
-		console.log(correctAnswer + " " + thisStateName + " " + thisStateFact);
+	
 		//Remove this state from the array so question isn't duplicated later in game
 		states.splice(correctAnswer, 1);
 		console.log('states', states.length);
+		
 		//Reset wrong answers, pull 3 random wrong answers from remaining states array
 		var statesCopy = states.slice(0);
 		allAnswers = [thisStateFact];
@@ -95,14 +85,12 @@ $(document).ready(function() {
 			for (var x = 0; x < 3; x++) {
 				var wrongFact = Math.floor(Math.random() * statesCopy.length);
 				allAnswers.push(statesCopy[wrongFact].fact);
-				console.log("allAnswers "+ allAnswers);
-				console.log("States copy length: " + statesCopy.length);
 				statesCopy.splice(wrongFact, 1);
-				console.log("statesCopy length after splice: " + statesCopy.length);
 			}
 		}
 		getWrongAnswers();
-		//Randomly assign order of answers
+
+		//Randomly assign answer order & show on screen
 		var randomAnswers = [];
 		for (var n = 0; n < 4; n++) {
 			var randomOrder = Math.floor(Math.random() * allAnswers.length);
@@ -126,35 +114,8 @@ $(document).ready(function() {
 		$("#userTwoScore").text(userScoreTwo);
 	});
 	
-
-	$("div.answer").on("click", function() {
-		if ($(this).context.innerHTML == thisStateFact) {
-			if (counter % 2 === 0) {
-				swal("Correct!", "Point for " + userName, "success");
-				userScoreOne+=1;
-				$("#userOneScore").text(userScoreOne);
-				$("#car1").animate({
-					left: "+=9%",
-					bottom: "+=14%",
-					width: "-=5%",
-					height: "-=10%"
-				});
-			} else {
-				swal("Correct!", "Point for " + userNameTwo, "success");
-				userScoreTwo+=1;
-				$("#userTwoScore").text(userScoreTwo);
-				$("#car2").animate({
-					right: "+=9%",
-					bottom: "+=14%",
-					width: "-=5%",
-					height: "-=10%"
-				});
-			}
-		} else {
-			swal("Sorry, that's not right.", "The correct answer is: " + thisStateFact, "error");
-		}
-		// console.log(states.length);
-		counter+=1;
+	//Declare function to check for winner after each round
+	var checkWinner = function() {
 		if (userScoreOne === 5) {
 			swal(userName + " wins!");
 			startScreen();
@@ -170,14 +131,47 @@ $(document).ready(function() {
 		} else {
 			nextRound();
 		}
+	}
+
+	//Get answer & alert right or wrong, if right add score & move car
+	$("div.answer").on("click", function() {
+		if ($(this).context.innerHTML == thisStateFact) {
+			if (counter % 2 === 0) {
+				swal("Correct!", "Point for " + userName, "success");
+				userScoreOne+=1;
+				$("#userOneScore").text(userScoreOne);
+				$("#car1").animate({
+					left: "+=9%",
+					bottom: "+=14%",
+					width: "-=5%",
+					height: "-=10%"
+				}, 700, checkWinner);
+			} else {
+				swal("Correct!", "Point for " + userNameTwo, "success");
+				userScoreTwo+=1;
+				$("#userTwoScore").text(userScoreTwo);
+				$("#car2").animate({
+					right: "+=9%",
+					bottom: "+=14%",
+					width: "-=5%",
+					height: "-=10%" 
+				}, 700, checkWinner);
+			}
+		} else {
+			swal("Sorry, that's not right.", "The correct answer is: " + thisStateFact, "error");
+			checkWinner;
+		}
+		counter+=1;
 	});
 });
 
+//Function to create State objects
 function State(name, fact) {
 	this.name = name;
 	this.fact = fact;
 }
 
+//Create new object for each state
 var alabama = new State("Alabama", "It is illegal to wear a fake mustache that causes laughter in church.");
 var alaska = new State("Alaska", "It is illegal to wake a sleeping bear to take a photo.");
 var arizona = new State("Arizona", "It is illegal for donkeys to sleep in bathtubs.");
@@ -229,5 +223,6 @@ var wv = new State("West Virginia", "Whistling underwater is prohibited.");
 var wisconsin = new State("Wisconsin", "It is illegal to serve butter substitutes in prison.");
 var wyoming = new State("Wyoming", "You may not take a picture of a rabbit from January to April without an official permit.");
 
+//create array with all 50 states
 var states = [ alabama, alaska, arizona, arkansas, california, colorado, connecticut, delaware, florida, georgia, hawaii, idaho, illinois, indiana, iowa, kansas, kentucky, louisiana, maine, maryland, massachusetts, michigan, minnesota, mississippi, missouri, montana, nevada, nebraska, nj, nh, ny, nm, nc, nd, ohio, oklahoma, oregon, pennsylvania, ri, sc, sd, tennessee, texas, utah, vermont, virginia, washington, wv, wisconsin, wyoming ]
 
