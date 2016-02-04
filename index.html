@@ -45,24 +45,27 @@
 	<!-- Present question and answer options -->
 	<div class="gameBoard">
 		<div class="container">
-			<div class="row scoreKeeper">
-				<div class="col-lg-1"></div>
-				<div id="playerOneTurn" class="col-lg-1"></div>
+			<div class="row">
+				<div id="statesCount" class="col-lg-2 col-lg-offset-8"><span id="statesLength"></span></div>
+			</div>
+			<div id="stateClue" class="row">
+				<div class="col-lg-2"></div>
+				<div class="question col-lg-8"></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<div id="playerOneTurn" class="col-lg-1 scoreCard"><span class="glyphicon glyphicon-arrow-down"></span></div>
 				<div class="col-lg-2 scoreCard"><span class="userName">Player 1</span>:</div>
 				<div class="col-lg-1 scoreCard"><span id="userOneScore"></span></div>
-				<div class="col-lg-1"></div>
-				<div id-"playerTwoTurn" class="col-lg-1"></div>
 				<div class="col-lg-2 scoreCard"><span class="userNameTwo">Player 2</span>:</div>
 				<div class="col-lg-1 scoreCard"><span id="userTwoScore"></span></div>
+				<div id="playerTwoTurn" class="col-lg-1 scoreCard"><span></span></div>
 			</div>
-			<div class="row">
-				<div class="question col-lg-12"></div>
-			</div>
-			<div class="row">
-				<div id="optionOne" class="answer col-lg-3"></div>
-				<div id="optionTwo" class="answer col-lg-3"></div>
-				<div id="optionThree" class="answer col-lg-3"></div>
-				<div id="optionFour" class="answer col-lg-3"></div>
+			<div id="options" class="row">
+				<div id="optionOne" class="answer col-lg-2"></div>
+				<div id="optionTwo" class="answer col-lg-2 col-lg-offset-1"></div>
+				<div id="optionThree" class="answer col-lg-2 col-lg-offset-2"></div>
+				<div id="optionFour" class="answer col-lg-2 col-lg-offset-1"></div>
 			</div>
 		</div>
 	</div>

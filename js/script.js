@@ -23,6 +23,8 @@ var startScreen = function() {
 	userScoreOne = 0;
 	userScoreTwo = 0;
 	counter = 0;
+	$("#playerTwoTurn span").removeClass("glyphicon glyphicon-arrow-down");
+	$("#playerOneTurn span").addClass("glyphicon glyphicon-arrow-down");
 	/*userName = '';
 	userNameTwo = '';*/
 	states = [ alabama, alaska, arizona, arkansas, california, colorado, connecticut, delaware, florida, georgia, hawaii, idaho, illinois, indiana, iowa, kansas, kentucky, louisiana, maine, maryland, massachusetts, michigan, minnesota, mississippi, missouri, montana, nevada, nebraska, nj, nh, ny, nm, nc, nd, ohio, oklahoma, oregon, pennsylvania, ri, sc, sd, tennessee, texas, utah, vermont, virginia, washington, wv, wisconsin, wyoming ]
@@ -62,7 +64,8 @@ $(document).ready(function() {
 	
 		//Remove this state from the array so question isn't duplicated later in game
 		states.splice(correctAnswer, 1);
-		console.log('states', states.length);
+		var statesCount = states.length;
+		$("#statesLength").text("EXIT: " + ' ' + statesCount);
 		
 		//Reset wrong answers, pull 3 random wrong answers from remaining states array
 		var statesCopy = states.slice(0);
@@ -148,6 +151,13 @@ $(document).ready(function() {
 			nextRound();
 		}
 		counter+=1;
+		if (counter % 2 === 0) {
+			$("#playerTwoTurn span").removeClass("glyphicon glyphicon-arrow-down");
+			$("#playerOneTurn span").addClass("glyphicon glyphicon-arrow-down");
+		} else {
+			$("#playerOneTurn span").removeClass("glyphicon glyphicon-arrow-down");
+			$("#playerTwoTurn span").addClass("glyphicon glyphicon-arrow-down");
+		}
 	});
 });
 
