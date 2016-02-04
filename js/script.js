@@ -159,7 +159,7 @@ $(document).ready(function() {
 			}
 		} else {
 			swal("Sorry, that's not right.", "The correct answer is: " + thisStateFact, "error");
-			checkWinner;
+			nextRound();
 		}
 		counter+=1;
 	});

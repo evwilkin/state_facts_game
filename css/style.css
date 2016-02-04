@@ -3,6 +3,10 @@ body {
 	overflow: hidden;
 }
 
+#title {
+
+}
+
 h1 {
 	text-align: center;
 	margin: 0 auto;
@@ -182,5 +186,5 @@ ul {
 
 li.sources {
 	display: inline;
-	margin: 0 10px;
+	margin: 0 25px;
 }
