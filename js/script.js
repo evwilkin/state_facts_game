@@ -17,7 +17,6 @@ var resetCars = function() {
 var startScreen = function() {
 	$(".firstScreen").hide();
 	$(".firstScreen").fadeIn(1500);
-	$("#welcomeTwo").hide();
 	$(".startGame").hide();
 	$("div.gameBoard").hide();
 	$("form.firstPlayer").show();
@@ -64,7 +63,6 @@ $(document).ready(function() {
 			$("form.secondPlayer").hide(1000);
 			$(".userNameTwo").text(userNameTwo);
 		}
-		$("#welcomeTwo").fadeIn(2000);
 		$(".startGame").fadeIn(2000);
 	});
 

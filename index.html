@@ -10,24 +10,35 @@
 <body>
 	<!-- Display intro and get users -->
 	<div class="firstScreen">
+		
 		<div id="title">
-			<h1>A Tour of America's<br />Ludicrous Laws</h1>
+			<h1>A Tour of America's<br /><span class="large">Ludicrous Laws</span></h1>
 		</div>
-		<h2 class="text-center">Let's hit the road, <span class="userName"></span>. Who's coming with us?</h2>
-		<h2 id="welcomeTwo" class="text-center">Welcome along, <span class="userNameTwo"></span>.</h2>
-		<form class="navbar-form navbar-left firstPlayer" role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="name" autofocus>
+		<div class="gray">
+			<div class="instructions">
+				<div class="instructionText">
+					<h2>Most laws we know are easy to understand, make sense, and are even obvious to us.</h2>
+					<p>Some, however, are lesser known and leave you wondering "who came up with this?"</p>
+					<h3>Grab a friend and get ready to guess which actual laws apply to which state!</h3>
+					<p>Believe it or not, all of these are real laws - but only one law applies to each state.  Guess correctly and get a point - take turns, first to 5 right answers wins!</p>
+				</div>
 			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
-		<form class="navbar-form navbar-left secondPlayer" role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="name" autofocus>
+			<div class="forms">	
+				<form class="navbar-form navbar-left firstPlayer" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Player 1 Name" autofocus>
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<form class="navbar-form navbar-left secondPlayer" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Player 2 Name" autofocus>
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
 			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
-		<button class="startGame btn btn-success">Play game!</button>
+			<button class="startGame btn btn-success">Play game!</button>
+		</div>
 	</div>
 
 	<!-- Start Game -->
