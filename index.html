@@ -10,33 +10,30 @@
 <body>
 	<!-- Display intro and get users -->
 	<div class="firstScreen">
-		
 		<div id="title">
 			<h1>A Tour of America's<br /><span class="large">Ludicrous Laws</span></h1>
 		</div>
-		<div class="gray">
-			<div class="instructions">
-				<div class="instructionText">
-					<h2>Most laws we know are easy to understand, make sense, and are even obvious to us.</h2>
-					<p>Some, however, are lesser known and leave you wondering "who came up with this?"</p>
-					<h3>Grab a friend and get ready to guess which actual laws apply to which state!</h3>
-					<p>Believe it or not, all of these are real laws - but only one law applies to each state.  Guess correctly and get a point - take turns, first to 5 right answers wins!</p>
+		<div class="instructions">
+			<div class="instructionText">
+				<h2>Most laws we know are easy to understand, make sense, and are even obvious to us.</h2>
+				<p>Some, however, are lesser known and leave you wondering "who came up with this?"</p>
+				<h3>Grab a friend and get ready to guess which actual laws apply to which state!</h3>
+				<p>Believe it or not, all of these are real laws - but only one law applies to each state.  Guess correctly and get a point - take turns, first to 5 right answers wins!</p>
+			</div>
+		</div>
+		<!-- <div class="container forms">
+			<form class="navbar-form navbar-left firstPlayer" role="search">
+				<div class="form-group">
+					<input id="player1Name" type="text" class="form-control text-center" placeholder="Player 1 Name" autofocus>
 				</div>
-			</div>
-			<div class="forms">	
-				<form class="navbar-form navbar-left firstPlayer" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Player 1 Name" autofocus>
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
-				<form class="navbar-form navbar-left secondPlayer" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Player 2 Name" autofocus>
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
-			</div>
+			</form>
+			<form class="navbar-form navbar-left secondPlayer" role="search">
+				<div class="form-group">
+					<input id="player2Name" type="text" class="form-control text-center" placeholder="Player 2 Name" autofocus>
+				</div>
+			</form>
+		</div> -->
+		<div class="button">
 			<button class="startGame btn btn-success">Play game!</button>
 		</div>
 	</div>
@@ -51,11 +48,11 @@
 			<div class="row scoreKeeper">
 				<div class="col-lg-1"></div>
 				<div id="playerOneTurn" class="col-lg-1"></div>
-				<div class="col-lg-2 scoreCard"><span class="userName"></span>:</div>
+				<div class="col-lg-2 scoreCard"><span class="userName">Player 1</span>:</div>
 				<div class="col-lg-1 scoreCard"><span id="userOneScore"></span></div>
 				<div class="col-lg-1"></div>
 				<div id-"playerTwoTurn" class="col-lg-1"></div>
-				<div class="col-lg-2 scoreCard"><span class="userNameTwo"></span>:</div>
+				<div class="col-lg-2 scoreCard"><span class="userNameTwo">Player 2</span>:</div>
 				<div class="col-lg-1 scoreCard"><span id="userTwoScore"></span></div>
 			</div>
 			<div class="row">

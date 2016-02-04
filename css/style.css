@@ -16,19 +16,39 @@ div.instructions {
 div.instructionText {
 	padding: 10px;
 	text-align: center;
-	margin: 0 auto;
+	margin: -20px auto;
 	width: 60vw;
 	color: white;
 }
 
-div.forms {
-	width: 42em;
+div.forms.container {
+	width: 60vw;
 	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+form {
+	display: ;
+}
+
+#player1Name {
+	float: left;
+}
+
+#player2Name {
+	float: right;
+}
+
+div.button {
+	width: 32vw;
+	margin: 20px auto;
 }
 
 input.form-control {
 	font-size: 2em;
-	border: none;
+	height: 2em;
 }
 
 h1 {
@@ -57,11 +77,6 @@ span.large {
 	font-size: 3em;
 }
 
-form {
-	margin: 0 auto;
-	width: 100vh;
-}
-
 div.firstScreen {
 	z-index: 1;
 	background-image: url("../images/map.png");
@@ -72,6 +87,21 @@ div.firstScreen {
 	width: 100vw;
 	height: 100vh;
 	float: left;
+}
+
+button.startGame {
+	width: 30vw;
+	height: 10vw;
+	margin-top: 20px;
+	font-size: 2em;
+	background-color: rgba(90,90,90,0.8);
+	border: solid 3px black;
+	position: relative;
+	bottom: 0.8em;
+}
+
+button.startGame:hover {
+	background-color: #25B7E8;
 }
 
 div.flex {
@@ -131,20 +161,9 @@ footer {
 li {
 	list-style-type: none;
 }
-.startGame {
-	width: 30vw;
-	height: 10vw;
-	position: absolute;
-	top: 45vh;
-	left: 35vw;
-}
 
 .scoreCard {
 	font-size: 1em;
-}
-
-button.startGame {
-	font-size: 1.5em;
 }
 
 div.race {

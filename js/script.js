@@ -1,6 +1,6 @@
 //Declare variables
-var userName = "";
-var userNameTwo = "";
+var userName = "Player 1";
+var userNameTwo = "Player 2";
 var playerLocation;
 var screenOne, screenTwo, screenThree, screenFour, correctAnswer, thisStateFact, thisStateName, wrongAnswers;
 var counter = 0;
@@ -17,54 +17,42 @@ var resetCars = function() {
 var startScreen = function() {
 	$(".firstScreen").hide();
 	$(".firstScreen").fadeIn(1500);
-	$(".startGame").hide();
 	$("div.gameBoard").hide();
 	$("form.firstPlayer").show();
 	$("div.race").hide();
 	userScoreOne = 0;
 	userScoreTwo = 0;
 	counter = 0;
-	userName = '';
-	userNameTwo = '';
+	/*userName = '';
+	userNameTwo = '';*/
 	states = [ alabama, alaska, arizona, arkansas, california, colorado, connecticut, delaware, florida, georgia, hawaii, idaho, illinois, indiana, iowa, kansas, kentucky, louisiana, maine, maryland, massachusetts, michigan, minnesota, mississippi, missouri, montana, nevada, nebraska, nj, nh, ny, nm, nc, nd, ohio, oklahoma, oregon, pennsylvania, ri, sc, sd, tennessee, texas, utah, vermont, virginia, washington, wv, wisconsin, wyoming ]
 }
 
 //load first screen
 $(document).ready(function() {
 	startScreen();
-	
 	//Add event listener to get user's userName
-	$("form.firstPlayer").on("submit", function(e) {
+	/*$("button.startGame").click(function(e) {
 		e.preventDefault();
-		if ($("input").val() != '') {	
-			userName = $("input").val();
-			$("input").val('');
+		if ($("#player1Name").val() != '') {	
+			userName = $("#player1Name").val();
+			$("#player1Name").val('');
 			$("form.firstPlayer").hide(1000);
 			$(".userName").text(userName);
-			$(".firstScreen").fadeIn(2000);
-			//adding below line as form isn't loading after first game finished
-			$("form.secondPlayer").fadeIn(2000);
-			//
+			if ($("#player2Name").val() != '') {	
+				userNameTwo = $("#player2Name").val();
+				$("#player1Name").val('');
+				$("form.firstPlayer").hide(1000);
+				$(".userNameTwo").text(userNameTwo);
+			}
 		} else {
 			swal({
 				title: "Name needed!",
-				text: "Please enter a name for Player 1.",
+				text: "Please enter names for both players!",
 				timer: 1000,
 				showConfirmButton: false });
 		}
-	});
-
-	//Get player 2 name
-	$("form.secondPlayer").on("submit", function(e) {
-		e.preventDefault();
-		if ($("form.secondPlayer input").val() != '') {	
-			userNameTwo = $("form.secondPlayer input").val();
-			$("form.secondPlayer input").val('');
-			$("form.secondPlayer").hide(1000);
-			$(".userNameTwo").text(userNameTwo);
-		}
-		$(".startGame").fadeIn(2000);
-	});
+	});*/
 
 	//function to set up gameBoard for next question round
 	var nextRound = function() {
